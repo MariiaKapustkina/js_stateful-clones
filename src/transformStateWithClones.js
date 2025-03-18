@@ -17,8 +17,6 @@ function transformStateWithClones(state, actions) {
         break;
 
       case 'removeProperties':
-        clone = { ...clone };
-
         for (const key of action.keysToRemove) {
           delete clone[key];
         }
@@ -27,9 +25,12 @@ function transformStateWithClones(state, actions) {
       case 'clear':
         clone = {};
         break;
+
+      default:
+        break;
     }
 
-    result.push(clone);
+    result.push({ ...clone });
   }
 
   return result;
